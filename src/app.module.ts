@@ -5,6 +5,7 @@ import { UserModule } from './user/user.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { HouseModule } from './houses/house.module';
 import { FinanceWallModule } from './finance-wall/finance-wall.module';
+import { ExpenseBreakdownModule } from './expenses-breakdown/expenses-breakdown.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { FinanceWallModule } from './finance-wall/finance-wall.module';
     UserModule,
     HouseModule,
     FinanceWallModule,
+    ExpenseBreakdownModule,
   ],
   controllers: [AppController],
   providers: [AppService],
