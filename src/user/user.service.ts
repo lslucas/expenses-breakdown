@@ -22,11 +22,15 @@ export class UserService {
   }
 
   async create(data: UserData): Promise<User> {
-    if (await this.find(data.email)) {
-      throw Error('email exists!');
+    try {
+      await this.find(data.email);
+    } catch (e) {
+      if (e.message === 'user not found!') {
+        const userData = new this.userModel(data);
+        return await userData.save();
+      }
     }
-    const userData = new this.userModel(data);
-    return await userData.save();
+    throw Error('email exists!');
   }
 
   async update(id: string, data: UserData): Promise<User> {
