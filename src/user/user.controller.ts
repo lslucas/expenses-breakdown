@@ -11,7 +11,7 @@ export class UserController {
   async find(@Param('email') email: string, @Res() res: Response): Promise<Response> {
     return await this.userService.find(email)
       .then((resp) => res.send(resp))
-      .catch((err) => res.send(err))
+      .catch((err) => res.status(404).send({success: false, message: err.message}))
     ;
   }
 
@@ -25,7 +25,7 @@ export class UserController {
     const data = req.body as unknown as UserData;
     return await this.userService.create(data)
       .then((resp) => res.send(resp))
-      .catch((err) => res.send(err.message))
+      .catch((err) => res.status(409).send({success: false, message: err.message}))
     ;
   }
 
@@ -34,7 +34,7 @@ export class UserController {
     const body = req.body as unknown as UserData;
     return await this.userService.update(id, body)
       .then((resp) => res.send(resp))
-      .catch((err) => res.send(err.message))
+      .catch((err) => res.status(409).send({success: false, message: err.message}))
     ;
   }
 
@@ -42,7 +42,7 @@ export class UserController {
   async delete(@Param('id') id: string, @Res() res: Response): Promise<Response> {
     return await this.userService.delete(id)
       .then((resp) => res.send(resp))
-      .catch((err) => res.send(err.message))
+      .catch((err) => res.status(409).send({success: false, message: err.message}))
     ;
   }
 }

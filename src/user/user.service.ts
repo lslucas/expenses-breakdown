@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Next } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { User, UserData } from './user.interface';
 import { InjectModel } from '@nestjs/mongoose';
@@ -19,7 +19,7 @@ export class UserService {
 
   async create(data: UserData): Promise<User> {
     if (await this.find(data.email)) {
-      throw Error('email already exists!');
+      throw Error('email exists!');
     }
     const userData = new this.userModel(data);
     return await userData.save();
