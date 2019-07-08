@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ResponseMiddleware } from '../server/middleware/response.middleware';
+import { ResponseMiddleware } from './server/middleware/response.middleware';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
