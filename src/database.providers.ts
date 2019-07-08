@@ -7,7 +7,7 @@ export const databaseProviders = [
       mongoose.set('useNewUrlParser', true);
       mongoose.set('useFindAndModify', false);
       mongoose.set('useCreateIndex', true);
-      return mongoose.connect('mongodb://localhost:27017/mr');
+      return mongoose.connect('mongodb://localhost:27017/mr', { useNewUrlParser: true });
     },
   },
 ];
