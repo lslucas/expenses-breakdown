@@ -8,8 +8,8 @@ export class HouseController {
   constructor(private readonly houseService: HouseService) {}
 
   @Get('/:code')
-  async find(@Param('code') code: string, @Res() res: Response): Promise<Response> {
-    return await this.houseService.find(code)
+  async findByCode(@Param('code') code: string, @Res() res: Response): Promise<Response> {
+    return await this.houseService.findByCode(code)
       .then((resp) => res.send(resp))
       .catch((err) => res.status(404).send({success: false, message: err.message}))
     ;

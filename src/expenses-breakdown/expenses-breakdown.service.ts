@@ -9,12 +9,12 @@ export class ExpenseBreakdownService {
     @InjectModel('ExpenseBreakdown') private readonly servModel: Model<ExpenseBreakdown>,
   ) {}
 
-  async find(id: string): Promise<ExpenseBreakdown> {
+  async find(id: string): Promise<ExpenseBreakdownData> {
     const item = await this.servModel.findOne({_id: id}).exec();
     if (!item) {
       throw Error('expense not found!');
     }
-    return item;
+    return item.toObject();
   }
 
   async findAll(): Promise<ExpenseBreakdown[]> {

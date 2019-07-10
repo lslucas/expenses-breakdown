@@ -15,11 +15,6 @@ export class FinanceWallController {
     ;
   }
 
-  @Get()
-  async findAll(): Promise<FinanceWall[]> {
-    return await this.houseService.findAll();
-  }
-
   @Post()
   async create(@Req() req: Request, @Res() res: Response): Promise<Response> {
     const data = req.body as unknown as FinanceWallData;

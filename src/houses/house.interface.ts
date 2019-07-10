@@ -8,6 +8,7 @@ export interface HouseData {
   owner: Types.ObjectId;
   code: string;
   name: string;
+  people: Types.ObjectId[];
   location: string;
   visible: boolean;
   rules: string;

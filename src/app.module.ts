@@ -6,6 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { HouseModule } from './houses/house.module';
 import { FinanceWallModule } from './finance-wall/finance-wall.module';
 import { ExpenseBreakdownModule } from './expenses-breakdown/expenses-breakdown.module';
+import { BillModule } from './bill/bill.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { ExpenseBreakdownModule } from './expenses-breakdown/expenses-breakdown.
     HouseModule,
     FinanceWallModule,
     ExpenseBreakdownModule,
+    BillModule,
   ],
   controllers: [AppController],
   providers: [AppService],

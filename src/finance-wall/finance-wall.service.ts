@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { FinanceWall, FinanceWallData } from './finance-wall.interface';
 import { InjectModel } from '@nestjs/mongoose';
 
@@ -17,8 +17,12 @@ export class FinanceWallService {
     return item;
   }
 
-  async findAll(): Promise<FinanceWall[]> {
-    return await this.servModel.find().exec();
+  async findAllByOwner(owner: Types.ObjectId): Promise<FinanceWall[]> {
+    const items = await this.servModel.find({owner}).exec();
+    if (!items) {
+      throw Error('nothing found!');
+    }
+    return items;
   }
 
   async create(data: FinanceWallData): Promise<FinanceWall> {

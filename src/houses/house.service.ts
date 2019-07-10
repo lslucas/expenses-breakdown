@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { House, HouseData } from './house.interface';
 import { InjectModel } from '@nestjs/mongoose';
 import * as crypto from 'crypto';
@@ -10,7 +10,15 @@ export class HouseService {
     @InjectModel('House') private readonly servModel: Model<House>,
   ) {}
 
-  async find(code: string): Promise<House> {
+  async find(id: Types.ObjectId): Promise<HouseData> {
+    const item = await this.servModel.findOne({_id: id}).exec();
+    if (!item) {
+      throw Error('house not found!');
+    }
+    return item.toObject();
+  }
+
+  async findByCode(code: string): Promise<House> {
     const item = await this.servModel.findOne({code}).exec();
     if (!item) {
       throw Error('house not found!');

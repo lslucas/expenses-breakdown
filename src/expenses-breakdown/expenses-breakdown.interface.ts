@@ -4,17 +4,21 @@ import { Document, Types } from 'mongoose';
 export interface ExpenseBreakdown extends Document {}
 
 export interface BillData {
-  _id: object;
+  _id?: object;
   owner: Types.ObjectId;
-  price: number;
-  payedAt: Date;
+  bill: Types.ObjectId;
+  payedAt?: Date;
+}
+
+export interface ODate {
+  odate: Date;
 }
 
 export interface ExpenseBreakdownData {
   _id: object;
   house: Types.ObjectId;
   odate: Date;
-  bill: BillData;
+  bills: BillData[];
   createdAt: Date;
   updatedAt: Date;
 }
